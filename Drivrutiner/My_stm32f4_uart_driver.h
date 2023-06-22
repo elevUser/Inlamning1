@@ -1,5 +1,5 @@
-#ifndef	__MY_STM32F4_GPIO_DRIVER_H__
-#define __MY_STM32F4_GPIO_DRIVER_H__
+#ifndef	__MY_STM32F4_UART_DRIVER_H__
+#define __MY_STM32F4_UART_DRIVER_H__
 #include <stdint.h>
 
 #define		PERIPH_BASE				0x40000000U
