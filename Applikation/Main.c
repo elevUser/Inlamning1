@@ -1,30 +1,35 @@
-
-#include "My_stm32f4_gpio_lib.h"
-#include "My_stm32f4_uart_lib.h"
-#include <stdio.h>
-
-GPIO_InitTypeDef;    GPIO_struct;
-UART_TypeDef	     UART_struct;
+#include  "my_stm32f4_gpio_lib.h"
+#include  "My_stm32f4_uart_driver.h"
 
 
-int main(int argc, char const *argv[])
-{
-    GPIO_struct.Mode 		= GPIO_MODE_OUTPUT_PP;
-	GPIO_struct.Pin  		= GPIO_PIN_5;
-	GPIO_struct.Pull		= GPIO_NOPULL;
 
-    __LIB_RCC_GPIOA_CLK_ENABLE();          
-	LIB_GPIO_Init(GPIOA, &GPIO_struct);     
+GPIO_InitTypeDef		myGPIO_InitSruct;
 
-	UART2_init(GPIOA);                      
-	UART2_enable(&UART_struct, 1);         
-	while(1)
-    {
-        for(int i = 0; i < 900000; i++){}
-		LIB_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-    }
+int main(void){
+   
+  myGPIO_InitSruct.Mode = GPIO_MODE_OUTPUT_PP;
+  myGPIO_InitSruct.Pin  = GPIO_PIN_5;
+	myGPIO_InitSruct.Pull	= GPIO_NOPULL;
+	
+	__LIB_RCC_GPIOA_CLK_ENABLE();
+	LIB_GPIO_Init(GPIOA,&myGPIO_InitSruct);
 
-    UART2_disable(&UART_struct);            
 
-	return 0;
+
+
+	while(1){
+	   for(int i =0;i< 900000;i++){}
+		 LIB_GPIO_TogglePin(GPIOA,GPIO_PIN_5);
+
+	}
+   
 }
+
+
+
+
+
+
+
+
+
